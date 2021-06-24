@@ -77,6 +77,10 @@ export class HandleController implements Controller {
         return result;
     }
 
+    public get size(): number {
+        return this.handles.size;
+    }
+
     public inputForHandle(handle: SliderHandle): HTMLInputElement | undefined {
         if (this.handles.has(handle.handleName)) {
             const { input } = this.getHandleElements(handle);
@@ -135,6 +139,12 @@ export class HandleController implements Controller {
 
     public get focusElement(): HTMLElement {
         const { input } = this.getActiveHandleElements();
+        if (
+            this.host.editable &&
+            !(input as InputWithModel).model.handle.dragging
+        ) {
+            return this.host.numberField;
+        }
         return input;
     }
 
@@ -233,7 +243,7 @@ export class HandleController implements Controller {
 
     private get boundingClientRect(): DOMRect {
         if (!this._boundingClientRect) {
-            this._boundingClientRect = this.host.getBoundingClientRect();
+            this._boundingClientRect = this.host.track.getBoundingClientRect();
         }
         return this._boundingClientRect;
     }
@@ -442,6 +452,7 @@ export class HandleController implements Controller {
                     aria-disabled=${ifDefined(
                         this.host.disabled ? 'true' : undefined
                     )}
+                    tabindex=${ifDefined(this.host.editable ? -1 : undefined)}
                     aria-label=${ifDefined(model.ariaLabel)}
                     aria-labelledby=${ariaLabelledBy}
                     aria-valuetext=${this.formattedValueForHandle(model)}

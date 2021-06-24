@@ -57,7 +57,7 @@ export default {
     },
 };
 
-interface StoryArgs {
+export interface StoryArgs {
     variant?: string;
     tickStep?: number;
 }
@@ -72,6 +72,91 @@ export const Default = (args: StoryArgs): TemplateResult => {
     return html`
         <div style="width: 500px; margin: 12px 20px;">
             <sp-slider
+                max="1"
+                min="0"
+                value=".5"
+                step="0.01"
+                @input=${handleEvent}
+                @change=${handleEvent}
+                .formatOptions=${{ style: 'percent' }}
+                ...=${spreadProps(args)}
+            >
+                Opacity
+            </sp-slider>
+        </div>
+    `;
+};
+
+export const editable = (args: StoryArgs): TemplateResult => {
+    const handleEvent = (event: Event): void => {
+        const target = event.target as Slider;
+        if (target.value != null) {
+            action(event.type)(target.value.toString());
+        }
+    };
+    return html`
+        <div style="width: 500px; margin: 12px 20px;">
+            <sp-slider
+                editable
+                max="360"
+                min="0"
+                value="90"
+                step="1"
+                @input=${handleEvent}
+                @change=${handleEvent}
+                .formatOptions=${{
+                    style: 'unit',
+                    unit: 'degree',
+                    unitDisplay: 'narrow',
+                }}
+                ...=${spreadProps(args)}
+            >
+                Angle
+            </sp-slider>
+        </div>
+    `;
+};
+
+export const editableCustom = (args: StoryArgs): TemplateResult => {
+    const handleEvent = (event: Event): void => {
+        const target = event.target as Slider;
+        if (target.value != null) {
+            action(event.type)(target.value.toString());
+        }
+    };
+    return html`
+        <div
+            style="width: 500px; margin: 12px 20px; --spectrum-slider-editable-number-field-width: 150px;"
+        >
+            <sp-slider
+                editable
+                max="24"
+                min="0"
+                value="12.75"
+                step="0.25"
+                @input=${handleEvent}
+                @change=${handleEvent}
+                .formatOptions=${{ style: 'unit', unit: 'hour' }}
+                ...=${spreadProps(args)}
+            >
+                Hours
+            </sp-slider>
+        </div>
+    `;
+};
+
+export const hideStepper = (args: StoryArgs): TemplateResult => {
+    const handleEvent = (event: Event): void => {
+        const target = event.target as Slider;
+        if (target.value != null) {
+            action(event.type)(target.value.toString());
+        }
+    };
+    return html`
+        <div style="width: 500px; margin: 12px 20px;">
+            <sp-slider
+                editable
+                hide-stepper
                 max="1"
                 min="0"
                 value=".5"
