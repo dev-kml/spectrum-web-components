@@ -200,6 +200,35 @@ export const MenuGroupSelects = (): TemplateResult => {
     `;
 };
 
+export const submenu = (): TemplateResult => {
+    return html`
+        <sp-popover open style="width: 200px;">
+            <sp-menu>
+                <sp-menu-group>
+                    <span slot="header">New York</span>
+                    <sp-menu-item>Bronx</sp-menu-item>
+                    <sp-menu-item>
+                        Brooklyn
+                        <sp-menu slot="sub-menu">
+                            <sp-menu-item>
+                                Ft. Greene
+                                <sp-menu slot="sub-menu">
+                                    <sp-menu-item>S. Oxford St</sp-menu-item>
+                                    <sp-menu-item>S. Portland Ave</sp-menu-item>
+                                    <sp-menu-item>S. Elliot Pl</sp-menu-item>
+                                </sp-menu>
+                            </sp-menu-item>
+                            <sp-menu-item disabled>Park Slope</sp-menu-item>
+                            <sp-menu-item>Williamsburg</sp-menu-item>
+                        </sp-menu>
+                    </sp-menu-item>
+                    <sp-menu-item>Manhattan</sp-menu-item>
+                </sp-menu-group>
+            </sp-menu>
+        </sp-popover>
+    `;
+};
+
 export const selectedOffPage = (): TemplateResult => {
     return html`
         <p style="height: 100vh; padding-bottom: 50px;">

@@ -19,7 +19,11 @@ import {
 } from '@spectrum-web-components/base';
 
 import '@spectrum-web-components/icons-ui/icons/sp-icon-checkmark100.js';
+import '@spectrum-web-components/icons-ui/icons/sp-icon-chevron100.js';
 import { ActionButton } from '@spectrum-web-components/action-button';
+import chevronStyles from '@spectrum-web-components/icon/src/spectrum-icon-chevron.css.js';
+
+import { openOverlay } from '@spectrum-web-components/overlay/src/loader.js';
 
 import menuItemStyles from './menu-item.css.js';
 import checkmarkStyles from '@spectrum-web-components/icon/src/spectrum-icon-checkmark.css.js';
@@ -51,8 +55,11 @@ export class MenuItemAddedOrUpdatedEvent extends Event {
             composed: true,
         });
     }
-    set focusRoot(root: Menu) {
-        this.item.menuData.focusRoot = this.item.menuData.focusRoot || root;
+    set focusRoot(root: Menu | undefined) {
+        this.item.menuData.focusRoot = root;
+    }
+    get focusRoot(): Menu | undefined {
+        return this.item.menuData.focusRoot as Menu;
     }
     set selectionRoot(root: Menu) {
         this.item.menuData.selectionRoot =
@@ -94,13 +101,16 @@ const removeEvent = new MenuItemRemovedEvent();
  */
 export class MenuItem extends ActionButton {
     public static get styles(): CSSResultArray {
-        return [menuItemStyles, checkmarkStyles];
+        return [menuItemStyles, checkmarkStyles, chevronStyles];
     }
 
     static instanceCount = 0;
 
     @property({ type: Boolean, reflect: true })
     public focused = false;
+
+    @property({ type: Boolean })
+    public hasSubMenu = false;
 
     @property({
         type: Boolean,
@@ -111,6 +121,28 @@ export class MenuItem extends ActionButton {
         },
     })
     public noWrap = false;
+
+    @property({ type: Boolean })
+    public open = false;
+
+    public set submenu(submenu: Menu | undefined) {
+        this._submenu = submenu;
+    }
+
+    public get submenu(): Menu | undefined {
+        return this._submenu;
+    }
+
+    private _submenu?: Menu;
+
+    public constructor() {
+        super();
+        this.addEventListener(
+            'sp-menu-item-added-or-updated',
+            this.manageSubMenuItem
+        );
+        this.addEventListener('pointerenter', this.openOverlay);
+    }
 
     public get itemChildren(): { icon: Element[]; content: Node[] } {
         const iconSlot = this.shadowRoot.querySelector(
@@ -143,17 +175,41 @@ export class MenuItem extends ActionButton {
         if (this.selected) {
             content.push(html`
                 <sp-icon-checkmark100
-                    id="selected"
-                    class="spectrum-UIIcon-Checkmark100 icon"
+                    class="spectrum-UIIcon-Checkmark100 icon checkmark"
                 ></sp-icon-checkmark100>
             `);
         }
         return content;
     }
 
+    protected manageSubMenu(event: Event & { target: HTMLSlotElement }): void {
+        const assignedElements = event.target.assignedElements({
+            flatten: true,
+        });
+        this.hasSubMenu = this.open || !!assignedElements.length;
+    }
+
+    protected manageSubMenuItem(event: MenuItemAddedOrUpdatedEvent): void {
+        if (event.target !== this) {
+            event.focusRoot = undefined;
+        }
+    }
+
     protected renderButton(): TemplateResult {
         return html`
             ${this.buttonContent}
+            <slot
+                hidden
+                name="sub-menu"
+                @slotchange=${this.manageSubMenu}
+            ></slot>
+            ${this.hasSubMenu
+                ? html`
+                      <sp-icon-chevron100
+                          class="spectrum-UIIcon-ChevronRight100 chevron icon"
+                      ></sp-icon-chevron100>
+                  `
+                : html``}
         `;
     }
 
@@ -162,6 +218,45 @@ export class MenuItem extends ActionButton {
         super.firstUpdated(changes);
         if (!this.hasAttribute('id')) {
             this.id = `sp-menu-item-${MenuItem.instanceCount++}`;
+        }
+    }
+
+    public closeOverlay?: () => void;
+
+    public async openOverlay(): Promise<void> {
+        if (this.hasSubMenu && !this.open) {
+            this.open = true;
+            this.submenu = (this.shadowRoot.querySelector(
+                'slot[name="sub-menu"]'
+            ) as HTMLSlotElement).assignedElements()[0] as Menu;
+            const popover = document.createElement('sp-popover');
+            popover.append(this.submenu);
+            this.submenu.removeAttribute('slot');
+            const closeOverlay = await openOverlay(this, 'click', popover, {
+                placement: 'right-start',
+                receivesFocus: 'auto',
+            });
+            this.closeOverlay = (leave = false) => {
+                this.menuData.focusRoot?.submenuClosed(this);
+                closeOverlay();
+                this.menuData.focusRoot?.focus();
+                if (!leave && this.menuData.focusRoot?.isSubMenu) {
+                    this.menuData.focusRoot?.isSubMenu(true);
+                }
+            };
+            this.submenu.isSubMenu = this.closeOverlay;
+            this.addEventListener(
+                'sp-closed',
+                () => {
+                    if (this.submenu) {
+                        this.submenu.slot = 'sub-menu';
+                        delete this.submenu.isSubMenu;
+                        this.append(this.submenu);
+                        this.open = false;
+                    }
+                },
+                { once: true }
+            );
         }
     }
 
@@ -182,10 +277,17 @@ export class MenuItem extends ActionButton {
         this.updateAriaSelected();
     }
 
-    protected updated(changes: PropertyValues): void {
+    protected updated(changes: PropertyValues<this>): void {
         super.updated(changes);
         if (changes.has('selected')) {
             this.updateAriaSelected();
+        }
+        if (changes.has('hasSubMenu')) {
+            if (this.hasSubMenu) {
+                this.addEventListener('click', this.openOverlay);
+            } else {
+                this.removeEventListener('click', this.openOverlay);
+            }
         }
     }
 
