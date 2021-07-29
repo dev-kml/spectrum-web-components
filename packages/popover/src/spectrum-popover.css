@@ -39,7 +39,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([placement*='top'][open]) {
     /* .spectrum-Popover--top.is-open */
     transform: translateY(
-        calc(-1 * var(--spectrum-overlay-animation-distance))
+        calc(var(--spectrum-overlay-animation-distance) * -1)
     );
 }
 :host([placement*='right'][open]) {
@@ -49,7 +49,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([placement*='left'][open]) {
     /* .spectrum-Popover--left.is-open */
     transform: translateX(
-        calc(-1 * var(--spectrum-overlay-animation-distance))
+        calc(var(--spectrum-overlay-animation-distance) * -1)
     );
 }
 :host {

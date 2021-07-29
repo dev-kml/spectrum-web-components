@@ -112,11 +112,11 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 }
 :host([dir='ltr']) .clear-button {
     /* [dir=ltr] .spectrum-Tags-item .spectrum-ClearButton */
-    margin-right: calc(-1 * var(--spectrum-tag-padding-right));
+    margin-right: calc(var(--spectrum-tag-padding-right) * -1);
 }
 :host([dir='rtl']) .clear-button {
     /* [dir=rtl] .spectrum-Tags-item .spectrum-ClearButton */
-    margin-left: calc(-1 * var(--spectrum-tag-padding-right));
+    margin-left: calc(var(--spectrum-tag-padding-right) * -1);
 }
 .label {
     /* .spectrum-Tags-itemLabel */

@@ -292,10 +292,9 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
         var(--spectrum-global-color-static-orange-700)
     );
 }
-:host([variant='error']),
 :host([variant='negative']) {
-    /* .spectrum-Toast--error,
-   * .spectrum-Toast--negative */
+    /* .spectrum-Toast--negative,
+   * /** @deprecated */ /*.spectrum-Toast--error */
     background-color: var(
         --spectrum-toast-negative-background-color,
         var(--spectrum-semantic-negative-color-background)
@@ -332,10 +331,9 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
         var(--spectrum-semantic-informative-color-background)
     );
 }
-:host([variant='positive']),
-:host([variant='success']) {
+:host([variant='positive']) {
     /* .spectrum-Toast--positive,
-   * .spectrum-Toast--success */
+   * /** @deprecated */ /*.spectrum-Toast--success */
     background-color: var(
         --spectrum-toast-positive-background-color,
         var(--spectrum-semantic-positive-color-background)

@@ -208,10 +208,9 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
         var(--spectrum-semantic-positive-color-status)
     );
 }
-:host([active]):before,
 :host([variant='info']):before {
-    /* .spectrum-StatusLight--active:before,
-   * .spectrum-StatusLight--info:before */
+    /* .spectrum-StatusLight--info:before,
+   * /** @deprecated */ /*.spectrum-StatusLight--active:before */
     background-color: var(
         --spectrum-statuslight-info-m-dot-color,
         var(--spectrum-semantic-informative-color-status)

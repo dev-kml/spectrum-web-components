@@ -57,13 +57,13 @@ const config = {
                     replacement:
                         ':host([dir="ltr"][selectable]) ::slotted(sp-menu-item[selected])',
                     selector:
-                        '.spectrum-Menu[dir=ltr].is-selectable .spectrum-Menu-item.is-selected',
+                        /.spectrum-Menu\[dir="?ltr"?\].is-selectable .spectrum-Menu-item.is-selected/,
                 },
                 {
                     replacement:
                         ':host([dir="rtl"][selectable]) ::slotted(sp-menu-item[selected])',
                     selector:
-                        '.spectrum-Menu[dir=rtl].is-selectable .spectrum-Menu-item.is-selected',
+                        /.spectrum-Menu\[dir="?rtl"?\].is-selectable .spectrum-Menu-item.is-selected/,
                 },
             ],
         },

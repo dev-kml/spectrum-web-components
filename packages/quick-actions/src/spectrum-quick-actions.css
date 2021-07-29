@@ -39,7 +39,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([enter-from='right'][opened]) {
     /* .spectrum-QuickActions--right.is-open */
     transform: translateX(
-        calc(-1 * var(--spectrum-overlay-animation-distance))
+        calc(var(--spectrum-overlay-animation-distance) * -1)
     );
 }
 :host {

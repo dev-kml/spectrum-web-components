@@ -298,10 +298,8 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     width: var(--spectrum-checkbox-box-size);
     height: var(--spectrum-checkbox-box-size);
     margin: calc(
-            (
-                    var(--spectrum-checkbox-height) -
-                        var(--spectrum-checkbox-box-size)
-                ) / 2
+            var(--spectrum-checkbox-height) / 2 -
+                var(--spectrum-checkbox-box-size) / 2
         )
         0;
     flex-grow: 0;
@@ -496,7 +494,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
         var(--spectrum-alias-text-color-down)
     );
 }
-:host([dir]) #input:checked:disabled + #box:before,
+#input:checked:disabled + #box:before,
 #input:disabled + #box:before {
     /* .spectrum-Checkbox .spectrum-Checkbox-input:checked:disabled+.spectrum-Checkbox-box:before,
    * .spectrum-Checkbox .spectrum-Checkbox-input:disabled+.spectrum-Checkbox-box:before */
@@ -585,7 +583,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     );
 }
 :host([invalid][dir]) #box:before,
-:host([invalid][dir]) #input:checked + #box:before {
+:host([invalid]) #input:checked + #box:before {
     /* .spectrum-Checkbox.is-invalid .spectrum-Checkbox-box:before,
    * .spectrum-Checkbox.is-invalid .spectrum-Checkbox-input:checked+.spectrum-Checkbox-box:before */
     border-color: var(
@@ -619,7 +617,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     );
 }
 :host([invalid][dir]:hover) #box:before,
-:host([invalid][dir]:hover) #input:checked + #box:before {
+:host([invalid]:hover) #input:checked + #box:before {
     /* .spectrum-Checkbox.is-invalid:hover .spectrum-Checkbox-box:before,
    * .spectrum-Checkbox.is-invalid:hover .spectrum-Checkbox-input:checked+.spectrum-Checkbox-box:before */
     border-color: var(
@@ -692,7 +690,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
             var(--spectrum-global-color-red-500)
         );
     }
-    :host([invalid][dir]) #input:checked + #box:before {
+    :host([invalid]) #input:checked + #box:before {
         border-color: var(
             --spectrum-checkbox-m-box-border-color-error,
             var(--spectrum-global-color-red-500)

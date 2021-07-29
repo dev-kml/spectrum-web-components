@@ -97,7 +97,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([dir='rtl'][checked]) #input + #switch:before {
     /* [dir=rtl] .spectrum-Switch-input:checked+.spectrum-Switch-switch:before */
     transform: translateX(
-        calc(-1 * (var(--spectrum-switch-track-width) - 100%))
+        calc(var(--spectrum-switch-track-width) * -1 - -100%)
     );
 }
 :host([disabled]) #input,
@@ -149,11 +149,11 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     position: relative;
     width: var(--spectrum-switch-track-width);
     margin-top: calc(
-        (var(--spectrum-switch-height) - var(--spectrum-switch-track-height)) /
+        var(--spectrum-switch-height) / 2 - var(--spectrum-switch-track-height) /
             2
     );
     margin-bottom: calc(
-        (var(--spectrum-switch-height) - var(--spectrum-switch-track-height)) /
+        var(--spectrum-switch-height) / 2 - var(--spectrum-switch-track-height) /
             2
     );
     margin-left: 0;
@@ -350,21 +350,21 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
         var(--spectrum-alias-text-color-disabled)
     );
 }
-:host([disabled][checked][dir]) #input + #switch {
+:host([disabled][checked]) #input + #switch {
     /* .spectrum-Switch .spectrum-Switch-input:disabled:checked+.spectrum-Switch-switch */
     background-color: var(
         --spectrum-switch-m-track-color-selected-disabled,
         var(--spectrum-global-color-gray-400)
     );
 }
-:host([disabled][checked][dir]) #input + #switch:before {
+:host([disabled][checked]) #input + #switch:before {
     /* .spectrum-Switch .spectrum-Switch-input:disabled:checked+.spectrum-Switch-switch:before */
     border-color: var(
         --spectrum-switch-m-handle-border-color-selected-disabled,
         var(--spectrum-global-color-gray-400)
     );
 }
-:host([disabled][checked][dir]) #input ~ #label {
+:host([disabled][checked]) #input ~ #label {
     /* .spectrum-Switch .spectrum-Switch-input:disabled:checked~.spectrum-Switch-label */
     color: var(
         --spectrum-switch-m-text-color-selected-disabled,

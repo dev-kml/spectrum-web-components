@@ -470,7 +470,10 @@ class SpectrumProcessor {
                 let shouldStartWithHost = true;
                 if (startsWithDir.test(selector)) {
                     const mutateSelector = (dir) => {
-                        selector = selector.replace(`[dir=${dir}] `, '');
+                        selector = selector.replace(
+                            re`\[dir\="?${dir}"?\] `,
+                            ''
+                        );
                         if (this.component.hostShadowSelector !== ':host') {
                             if (!hasHost.test(selector)) {
                                 selector = `:host([dir=${dir}]) ${selector}`;
@@ -490,7 +493,7 @@ class SpectrumProcessor {
                             selector = `${this.component.hostSelector}[dir=${dir}] ${selector}`;
                         }
                     };
-                    if (selector.search(/\[dir\=ltr\]/) > -1) {
+                    if (selector.search(/\[dir\="?ltr"?\]/) > -1) {
                         mutateSelector('ltr');
                     } else {
                         mutateSelector('rtl');
@@ -579,11 +582,29 @@ class SpectrumProcessor {
         this.root = root;
         this.result = result;
 
-        const comment = postcss.comment({ text: this.headerText });
+        const comment = postcss.comment({
+            text: this.headerText,
+            raws: {
+                left: ' ',
+                right: ' ',
+            },
+        });
         this.result.root = postcss.root({
             nodes: [
-                postcss.comment({ text: 'stylelint-disable' }),
-                postcss.comment({ text: this.headerText }),
+                postcss.comment({
+                    text: 'stylelint-disable',
+                    raws: {
+                        left: ' ',
+                        right: ' ',
+                    },
+                }),
+                postcss.comment({
+                    text: this.headerText,
+                    raws: {
+                        left: ' ',
+                        right: ' ',
+                    },
+                }),
             ],
         });
 
@@ -707,7 +728,20 @@ class SpectrumProcessor {
         this.result.root.append(parentRule);
 
         if (comment) {
-            comment = postcss.comment({ text: comment });
+            // Normalize comment content between postcss and cssnano versions to prevent over versioning
+            comment = comment.replace('[dir="ltr"]', '[dir=ltr]');
+            comment = comment.replace('[dir="rtl"]', '[dir=rtl]');
+            comment = comment.replace(/::(?!-)/g, ':');
+            comment = comment.replace(/ > /g, '>');
+            comment = comment.replace(/ \+ /g, '+');
+            comment = comment.replace(/\*\//g, '*//*');
+            comment = postcss.comment({
+                text: comment,
+                raws: {
+                    left: ' ',
+                    right: ' ',
+                },
+            });
             parentRule.append(comment);
         }
 

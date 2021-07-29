@@ -182,10 +182,16 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     content: '';
     position: absolute;
     top: calc(
-        -1 * var(--spectrum-accordion-item-border-size, var(--spectrum-alias-border-size-thin))
+        var(
+                --spectrum-accordion-item-border-size,
+                var(--spectrum-alias-border-size-thin)
+            ) * -1
     );
     bottom: calc(
-        -1 * var(--spectrum-accordion-item-border-size, var(--spectrum-alias-border-size-thin))
+        var(
+                --spectrum-accordion-item-border-size,
+                var(--spectrum-alias-border-size-thin)
+            ) * -1
     );
     width: var(
         --spectrum-accordion-item-border-left-size-key-focus,

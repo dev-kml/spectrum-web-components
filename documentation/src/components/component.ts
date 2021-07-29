@@ -134,6 +134,7 @@ class ComponentElement extends RouteComponent {
 
     public get apiDocs(): CustomElement | undefined {
         let prefixedEl: CustomElement | undefined;
+        // prettier-ignore
         ((docs as unknown) as {
             declarations: CustomElement[];
         }[]).find((jsModule) => {
@@ -287,6 +288,7 @@ class ComponentElement extends RouteComponent {
                 ? buildTable(
                       'Events',
                       tag.events.filter(
+                          // prettier-ignore
                           (tag) =>
                               ((tag as unknown) as { privacy: string })
                                   .privacy !== 'private'

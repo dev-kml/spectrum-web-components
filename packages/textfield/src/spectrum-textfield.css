@@ -177,7 +177,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     -moz-appearance: textfield;
 }
 .input::placeholder {
-    /* .spectrum-Textfield-input::placeholder */
+    /* .spectrum-Textfield-input:placeholder */
     font-weight: var(--spectrum-textfield-placeholder-text-font-weight);
     font-style: var(--spectrum-textfield-placeholder-text-font-style);
     transition: color var(--spectrum-global-animation-duration-100, 0.13s)
@@ -187,13 +187,13 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 .input:lang(ja)::placeholder,
 .input:lang(ko)::placeholder,
 .input:lang(zh)::placeholder {
-    /* .spectrum-Textfield-input:lang(ja)::placeholder,
-   * .spectrum-Textfield-input:lang(ko)::placeholder,
-   * .spectrum-Textfield-input:lang(zh)::placeholder */
+    /* .spectrum-Textfield-input:lang(ja):placeholder,
+   * .spectrum-Textfield-input:lang(ko):placeholder,
+   * .spectrum-Textfield-input:lang(zh):placeholder */
     font-style: normal;
 }
 .input:hover::placeholder {
-    /* .spectrum-Textfield-input:hover::placeholder */
+    /* .spectrum-Textfield-input:hover:placeholder */
     font-weight: var(--spectrum-textfield-placeholder-text-font-weight);
 }
 .input:disabled {
@@ -202,7 +202,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     opacity: 1;
 }
 .input:disabled::placeholder {
-    /* .spectrum-Textfield-input:disabled::placeholder */
+    /* .spectrum-Textfield-input:disabled:placeholder */
     font-weight: var(--spectrum-textfield-placeholder-text-font-weight);
 }
 .input::-ms-clear {
@@ -483,7 +483,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     box-shadow: none;
 }
 :host(:hover) .input::placeholder {
-    /* .spectrum-Textfield:hover .spectrum-Textfield-input::placeholder */
+    /* .spectrum-Textfield:hover .spectrum-Textfield-input:placeholder */
     color: var(
         --spectrum-textfield-m-placeholder-text-color-hover,
         var(--spectrum-alias-placeholder-text-color-hover)
@@ -568,7 +568,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     );
 }
 .input::placeholder {
-    /* .spectrum-Textfield-input::placeholder */
+    /* .spectrum-Textfield-input:placeholder */
     color: var(
         --spectrum-textfield-m-placeholder-text-color,
         var(--spectrum-global-color-gray-600)
@@ -644,9 +644,9 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 .input :disabled::placeholder,
 :host([disabled]) .input::placeholder,
 :host([disabled]:hover) .input::placeholder {
-    /* .spectrum-Textfield-input :disabled::placeholder,
-   * .spectrum-Textfield.is-disabled .spectrum-Textfield-input::placeholder,
-   * .spectrum-Textfield.is-disabled:hover .spectrum-Textfield-input::placeholder */
+    /* .spectrum-Textfield-input :disabled:placeholder,
+   * .spectrum-Textfield.is-disabled .spectrum-Textfield-input:placeholder,
+   * .spectrum-Textfield.is-disabled:hover .spectrum-Textfield-input:placeholder */
     color: var(
         --spectrum-textfield-m-placeholder-text-color-disabled,
         var(--spectrum-alias-text-color-disabled)

@@ -132,10 +132,8 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
     width: var(--spectrum-radio-circle-diameter);
     height: var(--spectrum-radio-circle-diameter);
     margin: calc(
-            (
-                    var(--spectrum-radio-height) -
-                        var(--spectrum-radio-circle-diameter)
-                ) / 2
+            var(--spectrum-radio-height) / 2 -
+                var(--spectrum-radio-circle-diameter) / 2
         )
         0;
     flex-grow: 0;

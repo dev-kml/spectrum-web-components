@@ -39,12 +39,15 @@ const COLOR_FALLBACK = matchMedia('(prefers-color-scheme: dark)').matches
     : 'light';
 const SCALE_MEDIUM = 'medium';
 const DIR_FALLBACK = 'ltr';
+// prettier-ignore
 const DEFAULT_COLOR = (window.localStorage
     ? localStorage.getItem(SWC_THEME_COLOR_KEY) || COLOR_FALLBACK
     : COLOR_FALLBACK) as Color;
+// prettier-ignore
 const DEFAULT_SCALE = (window.localStorage
     ? localStorage.getItem(SWC_THEME_SCALE_KEY) || SCALE_MEDIUM
     : SCALE_MEDIUM) as Scale;
+// prettier-ignore
 const DEFAULT_DIR = (window.localStorage
     ? localStorage.getItem(SWC_THEME_DIR_KEY) || DIR_FALLBACK
     : DIR_FALLBACK) as 'ltr' | 'rtl';

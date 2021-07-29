@@ -86,12 +86,12 @@ const config = {
                     replacement:
                         ':host([dir]) #input:checked:disabled + #box:before',
                     selector:
-                        '.spectrum-Checkbox .spectrum-Checkbox-input:checked:disabled+.spectrum-Checkbox-box:before',
+                        '.spectrum-Checkbox .spectrum-Checkbox-input:checked:disabled + .spectrum-Checkbox-box:before',
                 },
                 {
                     replacement: '#input:disabled + #box:before',
                     selector:
-                        '.spectrum-Checkbox .spectrum-Checkbox-input:disabled+.spectrum-Checkbox-box:before',
+                        '.spectrum-Checkbox .spectrum-Checkbox-input:disabled + .spectrum-Checkbox-box:before',
                 },
                 {
                     replacement: ':host([invalid][dir]) #box:before',
@@ -102,7 +102,7 @@ const config = {
                     replacement:
                         ':host([invalid][dir]) #input:checked + #box:before',
                     selector:
-                        '.spectrum-Checkbox.is-invalid .spectrum-Checkbox-input:checked+.spectrum-Checkbox-box:before',
+                        '.spectrum-Checkbox.is-invalid .spectrum-Checkbox-input:checked + .spectrum-Checkbox-box:before',
                 },
                 {
                     replacement: ':host([invalid][dir]) #box:before',
@@ -113,7 +113,7 @@ const config = {
                     replacement:
                         ':host([invalid][dir]) #input:checked + #box:before',
                     selector:
-                        '.spectrum-Checkbox.is-invalid .spectrum-Checkbox-input:checked+.spectrum-Checkbox-box:before',
+                        '.spectrum-Checkbox.is-invalid .spectrum-Checkbox-input:checked + .spectrum-Checkbox-box:before',
                 },
                 {
                     replacement: ':host([invalid][dir]:hover) #box:before',
@@ -124,7 +124,7 @@ const config = {
                     replacement:
                         ':host([invalid][dir]:hover) #input:checked + #box:before',
                     selector:
-                        '.spectrum-Checkbox.is-invalid:hover .spectrum-Checkbox-input:checked+.spectrum-Checkbox-box:before',
+                        '.spectrum-Checkbox.is-invalid:hover .spectrum-Checkbox-input:checked + .spectrum-Checkbox-box:before',
                 },
             ],
         },

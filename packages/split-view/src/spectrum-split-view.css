@@ -26,32 +26,30 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([dir='ltr']) #gripper {
     /* [dir=ltr] .spectrum-SplitView-gripper */
     left: calc(
-        (
-                var(
-                        --spectrum-dragbar-gripper-width,
-                        var(--spectrum-global-dimension-static-size-50)
-                    ) + 2 *
-                    var(--spectrum-dragbar-gripper-border-width-horizontal, 3px) -
-                    var(
-                        --spectrum-dragbar-handle-width,
-                        var(--spectrum-global-dimension-static-size-25)
-                    )
+        var(
+                --spectrum-dragbar-gripper-width,
+                var(--spectrum-global-dimension-static-size-50)
+            ) / 2 * -1 +
+            var(--spectrum-dragbar-gripper-border-width-horizontal, 3px) * 2 / 2 *
+            -1 -
+            var(
+                --spectrum-dragbar-handle-width,
+                var(--spectrum-global-dimension-static-size-25)
             ) / 2 * -1
     );
 }
 :host([dir='rtl']) #gripper {
     /* [dir=rtl] .spectrum-SplitView-gripper */
     right: calc(
-        (
-                var(
-                        --spectrum-dragbar-gripper-width,
-                        var(--spectrum-global-dimension-static-size-50)
-                    ) + 2 *
-                    var(--spectrum-dragbar-gripper-border-width-horizontal, 3px) -
-                    var(
-                        --spectrum-dragbar-handle-width,
-                        var(--spectrum-global-dimension-static-size-25)
-                    )
+        var(
+                --spectrum-dragbar-gripper-width,
+                var(--spectrum-global-dimension-static-size-50)
+            ) / 2 * -1 +
+            var(--spectrum-dragbar-gripper-border-width-horizontal, 3px) * 2 / 2 *
+            -1 -
+            var(
+                --spectrum-dragbar-handle-width,
+                var(--spectrum-global-dimension-static-size-25)
             ) / 2 * -1
     );
 }
@@ -171,20 +169,19 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([vertical]) #gripper {
     /* .spectrum-SplitView--vertical .spectrum-SplitView-gripper */
     top: calc(
-        (
-                var(
-                        --spectrum-dragbar-gripper-width,
-                        var(--spectrum-global-dimension-static-size-50)
-                    ) + 2 *
-                    var(--spectrum-dragbar-gripper-border-width-horizontal, 3px) -
-                    var(
-                        --spectrum-dragbar-handle-width,
-                        var(--spectrum-global-dimension-static-size-25)
-                    )
+        var(
+                --spectrum-dragbar-gripper-width,
+                var(--spectrum-global-dimension-static-size-50)
+            ) / 2 * -1 +
+            var(--spectrum-dragbar-gripper-border-width-horizontal, 3px) * 2 / 2 *
+            -1 -
+            var(
+                --spectrum-dragbar-handle-width,
+                var(--spectrum-global-dimension-static-size-25)
             ) / 2 * -1
     );
     transform: translate(
-        calc(-1 * var(--spectrum-splitview-vertical-gripper-width))
+        calc(var(--spectrum-splitview-vertical-gripper-width) * -1)
     );
     width: var(
         --spectrum-dragbar-gripper-height,

@@ -37,10 +37,15 @@ governing permissions and limitations under the License.
             var(--spectrum-global-dimension-size-50)
         )
         transparent;
-    border-top-color: var(
-        --spectrum-tooltip-background-color,
-        var(--spectrum-global-color-static-gray-700)
-    );
+    border-top: solid
+        var(
+            --spectrum-tooltip-tip-height,
+            var(--spectrum-global-dimension-size-50)
+        )
+        var(
+            --spectrum-tooltip-background-color,
+            var(--spectrum-global-color-static-gray-700)
+        );
 }
 
 /* orient the tip */

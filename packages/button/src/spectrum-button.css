@@ -302,15 +302,15 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([dir='ltr']) ::slotted([slot='icon']) {
     /* [dir=ltr] .spectrum-Button .spectrum-Icon */
     margin-left: calc(
-        -1 * (var(--spectrum-button-primary-textonly-padding-left-adjusted) -
-                    var(--spectrum-button-primary-padding-left-adjusted))
+        var(--spectrum-button-primary-textonly-padding-left-adjusted) * -1 -
+            var(--spectrum-button-primary-padding-left-adjusted) * -1
     );
 }
 :host([dir='rtl']) ::slotted([slot='icon']) {
     /* [dir=rtl] .spectrum-Button .spectrum-Icon */
     margin-right: calc(
-        -1 * (var(--spectrum-button-primary-textonly-padding-left-adjusted) -
-                    var(--spectrum-button-primary-padding-left-adjusted))
+        var(--spectrum-button-primary-textonly-padding-left-adjusted) * -1 -
+            var(--spectrum-button-primary-padding-left-adjusted) * -1
     );
 }
 :host([dir='ltr']) slot[name='icon'] + #label {

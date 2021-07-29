@@ -48,19 +48,19 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 }
 :host([dir='ltr']):before {
     /* [dir=ltr] .spectrum-Tabs-item:before */
-    left: calc(-1 * var(--spectrum-tabs-focus-ring-padding-x));
+    left: calc(var(--spectrum-tabs-focus-ring-padding-x) * -1);
 }
 :host([dir='rtl']):before {
     /* [dir=rtl] .spectrum-Tabs-item:before */
-    right: calc(-1 * var(--spectrum-tabs-focus-ring-padding-x));
+    right: calc(var(--spectrum-tabs-focus-ring-padding-x) * -1);
 }
 :host([dir='ltr']):before {
     /* [dir=ltr] .spectrum-Tabs-item:before */
-    right: calc(-1 * var(--spectrum-tabs-focus-ring-padding-x));
+    right: calc(var(--spectrum-tabs-focus-ring-padding-x) * -1);
 }
 :host([dir='rtl']):before {
     /* [dir=rtl] .spectrum-Tabs-item:before */
-    left: calc(-1 * var(--spectrum-tabs-focus-ring-padding-x));
+    left: calc(var(--spectrum-tabs-focus-ring-padding-x) * -1);
 }
 :host:before {
     /* .spectrum-Tabs-item:before */

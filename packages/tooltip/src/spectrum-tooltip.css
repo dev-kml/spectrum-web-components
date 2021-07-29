@@ -39,7 +39,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([placement*='top'][open]) {
     /* .spectrum-Tooltip--top.is-open */
     transform: translateY(
-        calc(-1 * var(--spectrum-overlay-animation-distance))
+        calc(var(--spectrum-overlay-animation-distance) * -1)
     );
 }
 :host([placement*='right'][open]) {
@@ -49,7 +49,7 @@ THIS FILE IS MACHINE GENERATED. DO NOT EDIT */
 :host([placement*='left'][open]) {
     /* .spectrum-Tooltip--left.is-open */
     transform: translateX(
-        calc(-1 * var(--spectrum-overlay-animation-distance))
+        calc(var(--spectrum-overlay-animation-distance) * -1)
     );
 }
 :host {
@@ -142,7 +142,10 @@ p {
    * .spectrum-Tooltip--right .spectrum-Tooltip-tip */
     top: 50%;
     margin-top: calc(
-        -1 * var(--spectrum-tooltip-tip-width, var(--spectrum-global-dimension-size-100))
+        var(
+                --spectrum-tooltip-tip-width,
+                var(--spectrum-global-dimension-size-100)
+            ) * -1
     );
 }
 :host([placement*='right']) {
@@ -186,7 +189,10 @@ p {
    * .spectrum-Tooltip--top .spectrum-Tooltip-tip */
     left: 50%;
     margin-left: calc(
-        -1 * var(--spectrum-tooltip-tip-width, var(--spectrum-global-dimension-size-100))
+        var(
+                --spectrum-tooltip-tip-width,
+                var(--spectrum-global-dimension-size-100)
+            ) * -1
     );
 }
 :host([dir='ltr']) ::slotted([slot='icon']) {
@@ -268,10 +274,9 @@ p {
         var(--spectrum-global-color-static-gray-700)
     );
 }
-.spectrum-Tooltip--error,
 :host([variant='negative']) {
-    /* .spectrum-Tooltip--error,
-   * .spectrum-Tooltip--negative */
+    /* .spectrum-Tooltip--negative,
+   * /** @deprecated */ /*.spectrum-Tooltip--error */
     background-color: var(
         --spectrum-tooltip-negative-background-color,
         var(--spectrum-global-color-static-red-700)
@@ -286,10 +291,9 @@ p {
         var(--spectrum-global-color-static-red-700)
     );
 }
-.spectrum-Tooltip--help,
 :host([variant='info']) {
-    /* .spectrum-Tooltip--help,
-   * .spectrum-Tooltip--info */
+    /* .spectrum-Tooltip--info,
+   * /** @deprecated */ /*.spectrum-Tooltip--help */
     background-color: var(
         --spectrum-tooltip-info-background-color,
         var(--spectrum-global-color-static-blue-700)
@@ -304,10 +308,9 @@ p {
         var(--spectrum-global-color-static-blue-700)
     );
 }
-:host([variant='positive']),
-.spectrum-Tooltip--success {
+:host([variant='positive']) {
     /* .spectrum-Tooltip--positive,
-   * .spectrum-Tooltip--success */
+   * /** @deprecated */ /*.spectrum-Tooltip--success */
     background-color: var(
         --spectrum-tooltip-positive-background-color,
         var(--spectrum-global-color-static-green-700)
