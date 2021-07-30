@@ -149,18 +149,18 @@ describe('Overlay Trigger', () => {
         });
 
         afterEach(async () => {
-            outerTrigger.removeAttribute('type');
             if (outerTrigger.open) {
                 const closed = oneEvent(outerTrigger, 'sp-closed');
                 outerTrigger.open = undefined;
                 await closed;
             }
-            innerTrigger.removeAttribute('type');
+            outerTrigger.removeAttribute('type');
             if (innerTrigger.open) {
                 const closed = oneEvent(innerTrigger, 'sp-closed');
                 innerTrigger.open = undefined;
                 await closed;
             }
+            innerTrigger.removeAttribute('type');
         });
 
         it('loads', async () => {
@@ -247,7 +247,7 @@ describe('Overlay Trigger', () => {
             expect(isVisible(outerClickContent)).to.be.true;
         });
 
-        ['inline', 'modal', 'replace'].map((type: string) => {
+        ['modal', 'replace', 'inline'].map((type: string) => {
             it(`opens a popover - [type="${type}"]`, async () => {
                 outerTrigger.type = type as Extract<
                     TriggerInteractions,
@@ -258,16 +258,9 @@ describe('Overlay Trigger', () => {
                 expect(isVisible(outerClickContent)).to.be.false;
 
                 expect(outerButton).to.exist;
+                const opened = oneEvent(outerTrigger, 'sp-opened');
                 outerButton.click();
-
-                // Wait for the DOM node to be stolen and reparented into the overlay
-                await waitForPredicate(
-                    () =>
-                        !(
-                            outerClickContent.parentElement instanceof
-                            OverlayTrigger
-                        )
-                );
+                await opened;
 
                 expect(outerClickContent.parentElement).to.not.be.an.instanceOf(
                     OverlayTrigger
